@@ -1,0 +1,87 @@
+{
+    "game": {
+        "width": 375,
+        "height": 667
+    },
+    "bg":{
+        "alignment": "center",
+        "default":{  "bg" : "src/assets/sprites/popper-background.jpg"}
+    },
+    "grid":{
+        "row":5,
+        "col": 5,
+        "cellwidth":50,
+        "cellheight":50,
+        "x":-130,
+        "y": 20,
+        "space":60
+
+    },
+    "poppers":{
+        "head":
+        [
+            {
+                "path": "src/assets/sprites/popper-blue.png",
+                "name": "blue",
+                "weight": 3
+            },
+            {
+                "path": "src/assets/sprites/popper-purple.png",
+                "name": "purple",
+                "weight": 2
+            },
+            {
+                "path": "src/assets/sprites/popper-yellow.png",
+                "name": "yellow",
+                "weight": 1
+            },
+            {
+                "path": "src/assets/sprites/popper-explosion.png",
+                "name": "yellow",
+                "weight": 0
+            }
+        ],
+        "eyes":{
+            "left": {
+                "path":"src/assets/sprites/popper-background.jpg",
+                "x": 0,
+                "y":0
+            },
+            "right":{
+                "path":"src/assets/sprites/popper-background.jpg",
+                "x": 0,
+                "y":0
+            }
+
+        },
+        "pop":{
+            "path":"src/assets/sprites/popper-background.jpg",
+            "anim-path":"src/assets/sprites/popper-background.jpg"
+        }
+    }
+    ,
+    "level":[
+        {
+            "bg": "src/assets/sprites/popper-background.jpg","grid":[[3,1,0,2 ,0],[1,1,0,2 ,0],[3,1,1,2 ,0],[3,1,0,0 ,0],[1,1,0,1 ,0]]
+        },
+        {
+            "bg": "src/assets/sprites/popper-background.jpg","grid":[[2,1,0,3 ,0],[1,0,0,2 ,0],[3,3,1,2 ,0],[3,0,0,0 ,0],[0,1,0,1 ,1]]
+        }
+    ],
+    "text":{
+       
+        "fontFamily":"Arial" ,
+        "fontSize": 24 ,
+        "color": "ffffff" , 
+        "align": "center",
+        "width": 100,
+        "height": 100 
+    },
+    
+    "button":{
+        "path": "src/assets/sprites/bg.png",
+        "width":150,
+        "height":150
+    }
+
+}
