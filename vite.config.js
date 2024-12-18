@@ -5,4 +5,9 @@ export default defineConfig({
   server: {
     open: true,
   },
+  esbuild: {
+    supported: {
+      'top-level-await': true //browsers can handle top-level-await features
+    },
+  }
 });
