@@ -4,11 +4,16 @@ import { Level } from './scenes/Level';
 import { Menu } from './scenes/Menu';
 
 const game = Game;
+try{
   await game.app.init({
       autoStart: false,
       resizeTo: window,
      sharedTicker: true,
    });
+  }
+catch(error){
+  console.log("error ",error);
+}
 console.log("game intiated")
 
 game.addCanvas();

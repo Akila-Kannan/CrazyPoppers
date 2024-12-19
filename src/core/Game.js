@@ -43,6 +43,7 @@ class Game {
       resizeTo: window,
       sharedTicker: true,
     });
+    // this.addCanvas();
   }
   addCanvas() {
     document.body.appendChild(this.app.canvas);
