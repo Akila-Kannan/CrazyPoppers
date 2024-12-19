@@ -1,5 +1,5 @@
-import * as PIXI from 'pixi.js';
-import Loader from './Loader';
+import * as PIXI from "pixi.js";
+import Loader from "./Loader";
 
 class Game {
   static instance;
@@ -9,64 +9,62 @@ class Game {
     Game.instance = this;
     // PIXI = window.devicePixelRatio || 1;
     this.window = window;
-    
+
     const currentUrl = window.location.href; // Current URL
     const dataPath = "assets/data/config.json"; // Relative path
 
     // Construct the full URL
     const fullUrl = new URL(dataPath, currentUrl);
-    this.config =  Loader.loadJSON(fullUrl).then(data => {
-      console.log("Config json data ",data);
+    this.config = Loader.loadJSON(fullUrl)
+      .then((data) => {
+        console.log("Config json data ", data);
         this.config = data;
       })
-      .catch(error => {
-        console.error('Error loading JSON:', error);
+      .catch((error) => {
+        console.error("Error loading JSON:", error);
       });
     this.app = new PIXI.Application({
-        resizeTo: window, // Auto fill the screen
-        autoDensity: true, // Handles high DPI screens
-        backgroundColor: 0xffffff
+      resizeTo: window, // Auto fill the screen
+      autoDensity: true, // Handles high DPI screens
+      backgroundColor: 0xffffff,
     });
     this.currentScene = null;
     this.prevScene = null;
-    this.currentLevel= null;
-    this.window.addEventListener('resize', () => {
-       // Code to execute on window resize
-       console.log('Window resized!');
-       setTimeout(this.resize.bind(this),100);
-     });
-   
+    this.currentLevel = null;
+    this.window.addEventListener("resize", () => {
+      // Code to execute on window resize
+      console.log("Window resized!");
+      setTimeout(this.resize.bind(this), 100);
+    });
   }
-  async init(){
+  async init() {
     await this.app.init({
-        autoStart: false,
-        resizeTo: window,
-        sharedTicker: true,
-     });
-       this.addCanvas();
+      autoStart: false,
+      resizeTo: window,
+      sharedTicker: true,
+    });
+    this.addCanvas();
   }
-  addCanvas(){
+  addCanvas() {
     document.body.appendChild(this.app.canvas);
     this.scenes = new Map();
   }
 
   changeScene(scene) {
-    if(this.currentScene)
-    this.currentScene.exit();
+    if (this.currentScene) this.currentScene.exit();
     this.prevScene = this.currentScene;
     this.currentScene = scene;
-    console.log("scene ",scene)
+    console.log("scene ", scene);
     this.currentScene.enter();
     this.resize();
     this.app.stage.removeChildren();
     this.app.stage.addChild(scene.container);
-    this.app.ticker.add((ticker) =>
-      {
-        this.currentScene.update(ticker.deltaTime);
-      }); 
+    this.app.ticker.add((ticker) => {
+      this.currentScene.update(ticker.deltaTime);
+    });
   }
-  resize(){
-    console.log(this.currentScene)
+  resize() {
+    console.log(this.currentScene);
     let container = this.currentScene.container;
     container.width = this.WIDTH;
     container.height = this.HEIGHT;
@@ -88,22 +86,22 @@ class Game {
   // our scenes a 375x667 stage to work with
   actualWidth() {
     const { width, height } = this.app.screen;
-    const isWidthConstrained = width < height * 9 / 16;
-    return isWidthConstrained ? width : height * 9 / 16;
+    const isWidthConstrained = width < (height * 9) / 16;
+    return isWidthConstrained ? width : (height * 9) / 16;
   }
 
   actualHeight() {
     const { width, height } = this.app.screen;
-    const isHeightConstrained = width * 16 / 9 > height;
-    return isHeightConstrained ? height : width * 16 / 9;
+    const isHeightConstrained = (width * 16) / 9 > height;
+    return isHeightConstrained ? height : (width * 16) / 9;
   }
-  handleWin (){
+  handleWin() {
     this.currentScene.handleWin();
   }
-  addScene(name,scene){
-    this.scenes.set(name,scene);
+  addScene(name, scene) {
+    this.scenes.set(name, scene);
   }
-  changeSceneWithName (sceneName){
+  changeSceneWithName(sceneName) {
     this.changeScene(this.scenes.get(sceneName));
   }
 }

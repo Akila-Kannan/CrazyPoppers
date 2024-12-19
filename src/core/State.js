@@ -1,6 +1,5 @@
 export class State {
-    enter() {}
-    update(delta) {}
-    exit() {}
-  }
-  
+  enter() {}
+  update(delta) {}
+  exit() {}
+}

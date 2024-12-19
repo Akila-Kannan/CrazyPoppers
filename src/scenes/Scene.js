@@ -1,5 +1,5 @@
-import { Container } from 'pixi.js';
-import { State } from '../core/State';
+import { Container } from "pixi.js";
+import { State } from "../core/State";
 
 export class Scene extends State {
   constructor(config) {
@@ -8,7 +8,5 @@ export class Scene extends State {
     this.config = config;
     this.bg = null;
   }
-  handleWin(){
-        
-  }
+  handleWin() {}
 }
