@@ -15,6 +15,9 @@ export class Cell {
     this.animateTransparent = false;
     this.spriteIncrementer = 1;
     this.spriteChangeIncr = 1;
+    this.spriteLeftEye;
+    this.spriteRightEye;
+
   }
 
   resetpoper() {
@@ -121,5 +124,5 @@ export class Cell {
     this.setpoperAnimation();
     this.grid.popNearerCells(this.gridindex.row, this.gridindex.col);
   }
-  
+
 }

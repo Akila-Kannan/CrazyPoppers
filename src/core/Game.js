@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import Loader from "./Loader";
+import { Menu } from '../scenes/Menu';
 
 class Game {
   static instance;
@@ -19,6 +20,7 @@ class Game {
       .then((data) => {
         console.log("Config json data ", data);
         this.config = data;
+        this.loadAssetsAndIntialScreen();
       })
       .catch((error) => {
         console.error("Error loading JSON:", error);
@@ -31,12 +33,13 @@ class Game {
     this.currentScene = null;
     this.prevScene = null;
     this.currentLevel = null;
-    console.log("pixi app created ",this.app)
+    console.log("pixi app created ", this.app);
     this.window.addEventListener("resize", () => {
       // Code to execute on window resize
       console.log("Window resized!");
       setTimeout(this.resize.bind(this), 100);
     });
+    this.init();
   }
   async init() {
     await this.app.init({
@@ -44,7 +47,22 @@ class Game {
       resizeTo: window,
       sharedTicker: true,
     });
-    // this.addCanvas();
+    this.addCanvas();
+
+    
+  }
+  async loadAssetsAndIntialScreen(){
+    let assets = await Loader.asset.load([
+      "assets/sprites/popper-background.jpg",
+      this.config.button.path,
+    ]);
+    for (let i = 0; i < this.config.poppers.head.length; i++)
+      assets = await Loader.asset.load(this.config.poppers.head[i].path);
+    console.log("images loadded");
+
+    const menu = new Menu(this.config);
+    this.changeScene(menu);
+    this.addScene("menu", menu);
   }
   addCanvas() {
     document.body.appendChild(this.app.canvas);
