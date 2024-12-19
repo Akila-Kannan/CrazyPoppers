@@ -10,8 +10,12 @@ class Game {
     // PIXI = window.devicePixelRatio || 1;
     this.window = window;
     
-    
-    this.config =  Loader.loadJSON("src/assets/data/config.json").then(data => {
+    const currentUrl = window.location.href; // Current URL
+    const dataPath = "assets/data/config.json"; // Relative path
+
+    // Construct the full URL
+    const fullUrl = new URL(dataPath, currentUrl);
+    this.config =  Loader.loadJSON(fullUrl).then(data => {
         this.config = data;
       })
       .catch(error => {
