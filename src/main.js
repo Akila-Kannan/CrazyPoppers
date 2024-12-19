@@ -10,7 +10,7 @@ const game = Game;
      sharedTicker: true,
    });
   game.addCanvas();
-  let assets =await Loader.asset.load(["assets/sprites/popper-background.jpg",Game.config.button.path])
+  let assets =await Loader.asset.load(["src/assets/sprites/popper-background.jpg",Game.config.button.path])
   for(let i=0; i< game.config.poppers.head.length;i++)
     assets =await Loader.asset.load(game.config.poppers.head[i].path)
   const menu = new Menu(game.config)

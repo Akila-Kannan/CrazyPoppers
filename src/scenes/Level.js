@@ -20,7 +20,6 @@ export class Level extends Scene {
     this.grid.enableGrid(this.container);
     this.text = new Text("Game Won",true,this.container);
     this.text.setPos( Game.config.game.width/2,Game.config.game.height/2)
-
   }
   update(delta) {
     this.bg.update(delta);

@@ -11,7 +11,7 @@ class Game {
     this.window = window;
     
     
-    this.config =  Loader.loadJSON("/assets/data/config.json").then(data => {
+    this.config =  Loader.loadJSON("src/assets/data/config.json").then(data => {
         this.config = data;
       })
       .catch(error => {
