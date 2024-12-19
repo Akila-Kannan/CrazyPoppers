@@ -4,6 +4,7 @@ import { Level } from './scenes/Level';
 import { Menu } from './scenes/Menu';
 
 const game = Game;
+console.log("Game intiating",game);
 try{
   await game.app.init({
       autoStart: false,
