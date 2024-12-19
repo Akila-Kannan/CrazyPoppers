@@ -12,7 +12,6 @@ export class Level extends Scene {
 
   enter() {
     this.bg = new Background();
-    console.log(this.config.level[Game.currentLevel - 1]);
     this.bg.setup(this.config.level[Game.currentLevel - 1], this.container);
     this.bg.enable();
     this.grid = new Grid(this.config.level[Game.currentLevel - 1]);
@@ -31,5 +30,4 @@ export class Level extends Scene {
     setTimeout(() => this.text.enable(), 1000);
     setTimeout(() => Game.changeSceneWithName("menu"), 3 * 1000);
   }
-  
 }

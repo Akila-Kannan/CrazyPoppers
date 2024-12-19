@@ -4,7 +4,6 @@ import { Container } from "pixi.js";
 
 export class Grid {
   constructor(leveldata) {
-    console.log(leveldata);
     this.cells = [];
     this.row = Game.config.grid.row;
     this.col = Game.config.grid.col;
@@ -29,8 +28,6 @@ export class Grid {
     this.container = new Container();
     this.container.x = Game.config.grid.x;
     this.container.y = Game.config.grid.y;
-    console.log(this.cells);
-    console.log(this.container);
 
     // this.container.anchor.set(0.5);
   }

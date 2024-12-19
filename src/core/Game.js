@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 import Loader from "./Loader";
-import { Menu } from '../scenes/Menu';
+import { Menu } from "../scenes/Menu";
 
 class Game {
   static instance;
@@ -18,29 +18,29 @@ class Game {
     const fullUrl = new URL(dataPath, currentUrl);
     this.config = Loader.loadJSON(fullUrl)
       .then((data) => {
-        console.log("Config json data ", data);
         this.config = data;
         this.loadAssetsAndIntialScreen();
       })
       .catch((error) => {
-        console.error("Error loading JSON:", error);
+        console.error("Error: Loading Json ", error);
       });
+
     this.app = new PIXI.Application({
       resizeTo: window, // Auto fill the screen
       autoDensity: true, // Handles high DPI screens
       backgroundColor: 0xffffff,
     });
+
     this.currentScene = null;
     this.prevScene = null;
     this.currentLevel = null;
-    console.log("pixi app created ", this.app);
+
     this.window.addEventListener("resize", () => {
-      // Code to execute on window resize
-      console.log("Window resized!");
       setTimeout(this.resize.bind(this), 100);
     });
     this.init();
   }
+
   async init() {
     await this.app.init({
       autoStart: false,
@@ -48,18 +48,18 @@ class Game {
       sharedTicker: true,
     });
     this.addCanvas();
-
-    
   }
-  async loadAssetsAndIntialScreen(){
+
+  async loadAssetsAndIntialScreen() {
     let assets = await Loader.asset.load([
-      "assets/sprites/popper-background.jpg",
+      this.config.bg.default.bg,
       this.config.button.path,
+      this.config.poppers.eyes.left.path,
+      this.config.poppers.eyes.right.path,
     ]);
     for (let i = 0; i < this.config.poppers.head.length; i++)
       assets = await Loader.asset.load(this.config.poppers.head[i].path);
-    console.log("images loadded");
-
+    // Adding Main Scene
     const menu = new Menu(this.config);
     this.changeScene(menu);
     this.addScene("menu", menu);
@@ -73,7 +73,6 @@ class Game {
     if (this.currentScene) this.currentScene.exit();
     this.prevScene = this.currentScene;
     this.currentScene = scene;
-    console.log("scene ", scene);
     this.currentScene.enter();
     this.resize();
     this.app.stage.removeChildren();
@@ -83,7 +82,6 @@ class Game {
     });
   }
   resize() {
-    console.log(this.currentScene);
     let container = this.currentScene.container;
     container.width = this.WIDTH;
     container.height = this.HEIGHT;

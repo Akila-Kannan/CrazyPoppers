@@ -20,10 +20,8 @@ export default class Text {
     }
     this.text.anchor.set(0.5);
     this.container = container;
-    console.log("color ", this.text);
   }
   setColor(color) {
-    console.log("color ", this.text);
     // this.text.localColor = color;
     this.text.style.fill = color;
   }

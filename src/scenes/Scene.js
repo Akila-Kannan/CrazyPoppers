@@ -8,5 +8,6 @@ export class Scene extends State {
     this.config = config;
     this.bg = null;
   }
+
   handleWin() {}
 }

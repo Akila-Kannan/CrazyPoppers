@@ -9,9 +9,7 @@ export class Menu extends Scene {
     super();
     this.game = Game;
     this.levelbuttons = [];
-    console.log("level", this.game.config.level.length);
     this.bg = new Background();
-    console.log("bg ", Game.config.bg.default);
     this.bg.setup(Game.config.bg.default, this.container);
     this.bg.enable();
     for (let i = 0; i < this.game.config.level.length; i++) {
@@ -27,9 +25,8 @@ export class Menu extends Scene {
       this.levelbuttons.push(button);
     }
   }
-  
+
   onclick(level) {
-    console.log("level ", level);
     Game.currentLevel = level + 1;
     this.game.changeScene(new Level(this.game.config));
   }

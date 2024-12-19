@@ -12,7 +12,6 @@ class ResourceLoader {
 
   load(resources, onComplete) {
     resources.forEach((res) => {
-      console.log(res.path);
       this.loader.add(/*res.name,*/ res.path, onComplete);
     });
     this.loader.load(onComplete);
