@@ -16,6 +16,7 @@ class Game {
     // Construct the full URL
     const fullUrl = new URL(dataPath, currentUrl);
     this.config =  Loader.loadJSON(fullUrl).then(data => {
+      console.log("Config json data ",data);
         this.config = data;
       })
       .catch(error => {
