@@ -9,10 +9,12 @@ const game = Game;
       resizeTo: window,
      sharedTicker: true,
    });
+  console.log("game intiated")
   game.addCanvas();
   let assets =await Loader.asset.load(["assets/sprites/popper-background.jpg",Game.config.button.path])
   for(let i=0; i< game.config.poppers.head.length;i++)
     assets =await Loader.asset.load(game.config.poppers.head[i].path)
+  console.log("images loadded")
   const menu = new Menu(game.config)
   game.changeScene(menu);
   Game.addScene("menu",menu);
