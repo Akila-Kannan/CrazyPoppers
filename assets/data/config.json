@@ -43,14 +43,14 @@
         ],
         "eyes":{
             "left": {
-                "path":"assets/sprites/popper-background.jpg",
-                "x": 0,
-                "y":0
+                "path":"assets/sprites/popper-leftEye.png",
+                "x": 10,
+                "y":10
             },
             "right":{
-                "path":"assets/sprites/popper-background.jpg",
-                "x": 0,
-                "y":0
+                "path":"assets/sprites/popper-rightEye.png",
+                "x": 10,
+                "y":10
             }
 
         },
