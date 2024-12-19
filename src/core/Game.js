@@ -31,6 +31,7 @@ class Game {
     this.currentScene = null;
     this.prevScene = null;
     this.currentLevel = null;
+    console.log("pixi app created ",this.app)
     this.window.addEventListener("resize", () => {
       // Code to execute on window resize
       console.log("Window resized!");
